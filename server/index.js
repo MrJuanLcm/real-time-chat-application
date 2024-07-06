@@ -1,6 +1,7 @@
 const socketio = require("socket.io");
 const express = require("express");
 const http = require("http");
+const cors = require("cors");
 
 const { addUser, removeUser, getUser, getUsersInRoom } = require("./users");
 
@@ -13,6 +14,7 @@ const io = socketio(server, {
   cors: { origin: "*" },
 });
 
+app.use(cors());
 app.use(router);
 
 io.on("connection", (socket) => {
